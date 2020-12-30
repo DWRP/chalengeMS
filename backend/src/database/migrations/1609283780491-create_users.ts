@@ -11,6 +11,7 @@ export class createUsers1609283780491 implements MigrationInterface {
                     type: 'integer',
                     unsigned: true,
                     isPrimary: true,
+                    isGenerated: true,
                     generationStrategy: 'increment'
                 },
                 {
