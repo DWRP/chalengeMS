@@ -1,0 +1,182 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root{
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Roboto', sans-serif;
+  background: #F2F2F2;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.content{
+  max-width: 320px;
+  max-height: 85%;
+
+  width: 100%;
+  height: 100%;
+ 
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.12);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.header{
+  width: 100%;
+  height: 20%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header .title{
+  margin: 44px 0 8px;
+  color: #219653;
+}
+
+.button{
+  filter: drop-shadow(7px 7px 20px rgba(0, 0, 0, 0.12));
+  border: 1px solid #006631;
+  
+  background: #006631;
+  color: white;
+
+  line-height: 42px;
+  width: 70%;
+
+  border-radius: 6px;
+  margin-top: 28px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.inputs{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+.inputs label{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  margin: 8px 12px;
+}
+
+.show-button{
+  
+  cursor: pointer;
+  background: none;
+
+  float: right;
+  
+  margin-left: 80%;
+  margin-top: -55px;
+  
+  position: relative;
+  z-index: 2;
+
+  border:none;
+}
+
+.content input{
+  width: 90%;
+  margin: 15px 0 8px;
+  padding: 12px;
+
+  background: rgba(185, 185, 185, 0.87);
+  opacity: .8;
+
+  border:none;
+  mix-blend-mode: normal;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  letter-spacing: 0.15px;
+}
+
+.content input.mail-input{
+  margin-bottom: 0px;
+}
+
+.content input::placeholder{
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.content a{
+  width: 100%;
+  padding: 0 6%;
+
+  text-decoration: none;
+
+  margin: 24px 0 16px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+
+  letter-spacing: 0.4px;
+
+  color: #828282;
+}
+
+.content a:hover{
+  opacity: .8;
+}
+
+.content a span{
+  color: #009c4c;
+}
+
+.errors{
+  font-size: 14px;
+  font-weight: 500;
+  color: red;
+}

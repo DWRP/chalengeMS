@@ -1,0 +1,83 @@
+
+.header .special-class{
+    width: 75%;
+    margin: 16px 0 0;
+}
+
+.message{
+
+    width: 75%;
+
+    margin: 4px auto;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+}
+
+.description{
+    max-width: 75%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 19px;
+
+    display: flex;
+    align-items: center;
+    text-align: justify;
+
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.footer{
+    width: 95%;
+
+    padding: 32px;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #BDBDBD;
+}
+
+.back-button{
+    border: none;
+    background: none;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+
+    text-align: center;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+
+    color: #EB5757;
+
+    cursor: pointer;
+}
+
+.back-button:hover{
+    opacity: .8;
+}
