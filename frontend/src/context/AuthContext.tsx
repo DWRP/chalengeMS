@@ -19,7 +19,7 @@ export default function AuthProvider({children}:any) {
 
     async function handleLogin(userData:object){
         try{
-
+            
             const response = await api.post('/login',userData)
             const { email } = response.data.user
             if(email){

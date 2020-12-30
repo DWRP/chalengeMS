@@ -8,12 +8,22 @@ import { useLoginContext } from '../../context/LoginContext'
 
 export default function Login(){
     const history = useHistory()
-    const { handleLogin, userValidate } = useAuthContext()
+    const { handleLogin, userValidate, setValidate } = useAuthContext()
     const {email, password } = useLoginContext()
 
     async function handleSubmit(){
-        await handleLogin({email, password})
-        history.push('/home')
+        const mailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        if(email && password){
+            if(mailRegex.test(email)){
+                await handleLogin({email, password})
+                history.push('/home')
+            }else{
+                setValidate("Email inválido!")
+            }
+        }else(
+            setValidate("Usuário e/ou Senha não pode estar vazio!")
+        )
+
     }
     return(
         <>

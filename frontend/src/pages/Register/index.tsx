@@ -6,7 +6,7 @@ import { useLoginContext } from '../../context/LoginContext'
 import { useHistory } from 'react-router-dom'
 
 export default function Login(){
-    const { userValidate ,handleRegister, setValidate } = useAuthContext()
+    const { userValidate ,handleRegister } = useAuthContext()
     const { email, password } = useLoginContext()
     const history = useHistory()
 

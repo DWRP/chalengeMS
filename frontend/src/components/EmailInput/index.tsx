@@ -20,6 +20,7 @@ export default function Email(){
                 value={email}
                 onChange={handleMail}
                 onClick={()=>setValidate()}
+                required
             />
         </>
     )
