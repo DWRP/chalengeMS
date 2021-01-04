@@ -4,6 +4,8 @@ A list of changes in application
 
 ## Releases
 
+- 1.3.2
+    - FIX: DB Test configs
 - 1.3.1
     - FIX: Local DB for Test
 - 1.3.0
