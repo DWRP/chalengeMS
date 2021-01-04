@@ -4,6 +4,8 @@ A list of changes in application
 
 ## Releases
 
+- 1.3.1
+    - FIX: Local DB for Test
 - 1.3.0
     - ADD: README, CHANGELOG, LICENSE and .github folder
 - 1.2.3

@@ -1,4 +1,4 @@
-module.exports = {
+/*module.exports = {
     type: "postgres",
     host: process.env.TYPEORM_HOST,
     port: process.env.TYPEORM_PORT,
@@ -9,5 +9,16 @@ module.exports = {
     entities: [process.env.TYPEORM_ENTITIES],
     cli: {
       migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR
+    }
+}
+*/
+
+//FOR TEST
+module.exports = {
+    type: "sqlite",
+    migrations: ["./src/database/migrations/*.ts"],
+    entities: ["./src/models/*.ts"],
+    cli: {
+      migrationsDir: "./src/database/migrations"
     }
 }
