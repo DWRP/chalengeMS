@@ -4,6 +4,8 @@ A list of changes in application
 
 ## Releases
 
+- 1.3.3
+    - FIX: Frontend fix configs
 - 1.3.2
     - FIX: DB Test configs
 - 1.3.1
