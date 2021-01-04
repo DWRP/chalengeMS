@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme: any) => ({
     textField: {
       width: '90%',
     },
-}));
+    
+}))
 
 export default function Login(){
     const history = useHistory()
@@ -78,16 +79,28 @@ export default function Login(){
         if(values.password && values.email && values.confirmPassword){
             
             if(values.password.length < 6){
-                setValues({ ...values, passwordError: !values.passwordError, errorText: 'Senha muito curta!' })
+                setValues({ 
+                    ...values, 
+                    passwordError: !values.passwordError, 
+                    errorText: 'Senha muito curta!' 
+                })
                 return false
             }
             if(values.confirmPassword !== values.password){
-                setValues({ ...values, confirmPasswordError: !values.confirmPasswordError, errorText: 'Senhas diferentes!' })
+                setValues({ 
+                    ...values, 
+                    confirmPasswordError: !values.confirmPasswordError, 
+                    errorText: 'Senhas diferentes!' 
+                })
                 return false
             }
 
             if(!regexp.test(values.email)){
-                setValues({ ...values, emailError: !values.emailError, errorText: 'Email Inválido' })
+                setValues({ 
+                    ...values, 
+                    emailError: !values.emailError, 
+                    errorText: 'Email Inválido' 
+                })
                 return false
             }
             
@@ -95,14 +108,44 @@ export default function Login(){
         }
         else{
             if(!values.email){
-                setValues({ ...values, emailError: !values.emailError, errorText: 'Email não pode ser vazio' })
+                setValues({ 
+                    ...values, 
+                    emailError: !values.emailError, 
+                    errorText: 'Email não pode ser vazio' 
+                })
             }
             if(!values.password){
-                setValues({ ...values, passwordError: !values.passwordError, errorText: 'Senha não pode ser vazia' })
+                setValues({ 
+                    ...values, 
+                    passwordError: !values.passwordError, 
+                    errorText: 'Senha não pode ser vazia' 
+                })
             }
             if(!values.confirmPassword){
-                setValues({ ...values, confirmPasswordError: !values.confirmPasswordError, errorText: 'Repita a senha anterior' })
+                setValues({ 
+                    ...values,
+                    confirmPasswordError: !values.confirmPasswordError, 
+                    errorText: 'Repita a senha anterior' 
+                })
             }
+            if(!values.password && !values.email){
+                setValues({ 
+                    ...values, 
+                    emailError: !values.emailError, 
+                    passwordError: !values.passwordError, 
+                    errorText: 'Por favor, preencha todos os campos' 
+                })
+            }
+            if(!values.password && !values.email && !values.confirmPassword){
+                setValues({ 
+                    ...values,
+                    emailError: !values.emailError, 
+                    passwordError: !values.passwordError, 
+                    confirmPasswordError: !values.confirmPasswordError, 
+                    errorText: 'Por favor, preencha todos os campos' 
+                })
+            }
+            
         }
         
         return false
@@ -110,8 +153,11 @@ export default function Login(){
     
     const handleSubmit = async () =>{
         if(validateValues()){
-            const register = await handleRegister({email: values.email, password: values.password})
-            console.log(register)
+            const register = await handleRegister({
+                email: values.email, 
+                password: values.password
+            })
+            
             if(register){
                 history.push('/')
             }

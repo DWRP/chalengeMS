@@ -7,6 +7,9 @@ Patch: To fix errors
 
 ## Releases
 
+- 2.0.1
+    FIX: Input error show only one erro in much errors
+
 - 2.0.0
     ADD: Material UI Components
     FIX: All UI errors by generic components

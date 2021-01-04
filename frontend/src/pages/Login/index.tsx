@@ -46,9 +46,9 @@ export default function Login(){
     const [values, setValues] = useState({
         email: '',
         password: '',
-        errorMail:false,
+        emailError:false,
         showPassword: false,
-        errorPass:false,
+        passwordError:false,
         errorText: ''
     });
 
@@ -71,12 +71,12 @@ export default function Login(){
         if(values.password && values.email){
             
             if(values.password.length < 6){
-                setValues({ ...values, errorPass: !values.errorPass, errorText: 'Senha muito curta!' })
+                setValues({ ...values, passwordError: !values.passwordError, errorText: 'Senha muito curta!' })
                 return false
             }
 
             if(!regexp.test(values.email)){
-                setValues({ ...values, errorMail: !values.errorMail, errorText: 'Email Inválido' })
+                setValues({ ...values, emailError: !values.emailError, errorText: 'Email Inválido' })
                 return false
             }
             
@@ -84,10 +84,13 @@ export default function Login(){
         }
         else{
             if(!values.email){
-                setValues({ ...values, errorMail: !values.errorMail, errorText: 'Email não pode ser vazio' })
+                setValues({ ...values, emailError: !values.emailError, errorText: 'Email não pode ser vazio' })
             }
             if(!values.password){
-                setValues({ ...values, errorPass: !values.errorPass, errorText: 'Senha não pode ser vazia' })
+                setValues({ ...values, passwordError: !values.passwordError, errorText: 'Senha não pode ser vazia' })
+            }
+            if(!values.password && !values.email){
+                setValues({ ...values, emailError: !values.emailError, passwordError: !values.passwordError, errorText: 'Por favor, preencha todos os campos' })
             }
         }
         
@@ -103,8 +106,8 @@ export default function Login(){
             else{
                 setValues({ 
                     ...values, 
-                    errorMail: !values.errorMail, 
-                    errorPass: !values.errorPass, errorText: 'Email ou senha inválido' 
+                    emailError: !values.emailError, 
+                    passwordError: !values.passwordError, errorText: 'Email ou senha inválido' 
                 })
             }
         }
@@ -123,10 +126,10 @@ export default function Login(){
             <FormControl 
                 className={clsx(classes.margin, classes.textField)} 
                 variant="outlined" 
-                error={values.errorMail}
+                error={values.emailError}
             >
                 <TextField
-                    error={values.errorMail}
+                    error={values.emailError}
                     id="outline-email"
                     value={values.email}
                     label="Email"
@@ -140,7 +143,7 @@ export default function Login(){
     
                 <FormHelperText 
                     id="outline-email-text" 
-                    hidden={!values.errorMail}
+                    hidden={!values.emailError}
                 >
                     {values.errorText}
                 </FormHelperText>
@@ -149,7 +152,7 @@ export default function Login(){
             <FormControl 
                 className={clsx(classes.margin, classes.textField)} 
                 variant="outlined" 
-                error={values.errorPass}
+                error={values.passwordError}
             >
                 <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
                 <OutlinedInput
@@ -174,7 +177,7 @@ export default function Login(){
                 />
                 <FormHelperText 
                     id="outlined-adornment-password-text" 
-                    hidden={!values.errorPass}
+                    hidden={!values.passwordError}
                 >
                     {values.errorText}
                 </FormHelperText>
