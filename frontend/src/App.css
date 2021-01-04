@@ -120,41 +120,13 @@ html, body, #root{
   border:none;
 }
 
-.content input{
-  width: 90%;
-  margin: 15px 0 8px;
-  padding: 12px;
-
-  background: rgba(185, 185, 185, 0.87);
-  opacity: .8;
-
-  border:none;
-  mix-blend-mode: normal;
-
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-
-  letter-spacing: 0.15px;
-}
-
-.content input.mail-input{
-  margin-bottom: 0px;
-}
-
-.content input::placeholder{
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.8);
-}
-
 .content a{
   width: 100%;
   padding: 0 6%;
 
   text-decoration: none;
 
-  margin: 24px 0 16px;
+  margin: 8px 0 32px;
 
   font-family: Roboto;
   font-style: normal;

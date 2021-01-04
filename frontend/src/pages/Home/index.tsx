@@ -2,6 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import { useAuthContext } from '../../context/AuthContext'
+import { 
+    CircularProgress
+} from '@material-ui/core';
 
 import './styles.css'
 
@@ -16,6 +19,8 @@ export default function Login(){
         }
         loadIp()
     },[])
+
+
     return(
         <>
             <Header title="Bem vindo" styleName="special-class" />
@@ -24,7 +29,7 @@ export default function Login(){
             <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent neque accumsan consequat, posuere dolor, arcu nisl nunc pellentesque. Euismod consequat massa aenean penatibus sed viverra sit enim. Mattis arcu at dolor pulvinar ultricies euismod duis mattis. Volutpat phasellus turpis enim odio. Vitae auctor morbi mi purus in at neque accumsan, fermentum. Ultrices placerat malesuada porta arcu ipsum faucibus. Quam proin at lorem amet enim nibh luctus eu. Sagittis ut adipiscing consectetur in est porta mollis in. Vitae in faucibus tellus amet neque, imperdiet. Leo tellus diam dui augue morbi sed.</p>
             
             <div className="footer">
-                <p>ip: {ip}</p>
+                <p>ip: {ip!=="000.000.0.00"?ip:<CircularProgress size={10} />}</p>
                 <button 
                     className="back-button"
                     onClick={handleLoggout}

@@ -4,9 +4,7 @@ import api from '../services/api'
 interface AuthContextData {
     signed: boolean
     user: object | null
-    userValidate: string
-    setValidate(text?:string): void
-    handleLogin(userData:object): Promise<void>
+    handleLogin(userData:object): Promise<boolean>
     handleRegister(userData:object): Promise<boolean>
     handleLoggout(): void
 }
@@ -15,23 +13,28 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export default function AuthProvider({children}:any) {
     const [ user, setUser ] = useState<object | null>(null)
-    const [ userValidate, setUserValidate ] = useState("")
 
     async function handleLogin(userData:object){
-        try{
-            
-            const response = await api.post('/login',userData)
-            const { email } = response.data.user
-            if(email){
-                setUser(response.data.user)
-                localStorage.setItem('user',JSON.stringify(response.data.user))
-                localStorage.setItem('token',JSON.stringify(response.data.token))
-            }
-        }
-        catch(error){
-            setUserValidate("Senha ou email inválido!")
+
+        const response = await api.post('/login',userData).catch(error => {
             console.log(error)
+            return {
+                data:{
+                    user:{
+                        email:undefined
+                    }
+                }
+            }
+        })
+
+        const { email } = response.data.user
+        if(email){
+            setUser(response.data.user)
+            localStorage.setItem('user',JSON.stringify(response.data.user))
+            localStorage.setItem('token',JSON.stringify(response.data.token))
+            return true
         }
+        return false    
 
     }
 
@@ -42,19 +45,17 @@ export default function AuthProvider({children}:any) {
                 return true
             }
         }catch(error){
-            setValidate("Usuário já existe")
+            console.log(error)
         }
         return false
     }
+
     async function handleLoggout(){
         setUser(null)
         localStorage.removeItem('user')
         localStorage.removeItem('token')
     }
 
-    function setValidate(text=""){
-        setUserValidate(text)
-    }
 
     useEffect(()=>{
         const userStorage = localStorage.getItem("user")
@@ -63,17 +64,20 @@ export default function AuthProvider({children}:any) {
         async function auth(){
             return await api.get('/reauth',{headers:{"Authentication":`Baron ${token}`}})
         }
-        const result = auth()
-        if(result){
-            if(userStorage){
-                setUser(JSON.parse(userStorage))
+        
+        if(token){
+            const result = auth()
+            if(result){
+                if(userStorage){
+                    setUser(JSON.parse(userStorage))
+                }
             }
         }
 
     },[])
 
     return(
-        <AuthContext.Provider value={{signed: !!user, user, userValidate, setValidate, handleLogin, handleRegister, handleLoggout}}>
+        <AuthContext.Provider value={{signed: !!user, user, handleLogin, handleRegister, handleLoggout}}>
             {children}
         </AuthContext.Provider>
     )
@@ -83,8 +87,8 @@ export function useAuthContext(){
     
     const context = useContext(AuthContext)
 
-    const {signed, user, userValidate, setValidate, handleLogin, handleRegister, handleLoggout} = context
+    const {signed, user, handleLogin, handleRegister, handleLoggout} = context
 
-    return {signed, user, userValidate, setValidate, handleLogin, handleRegister, handleLoggout}
+    return {signed, user, handleLogin, handleRegister, handleLoggout}
 
 }
